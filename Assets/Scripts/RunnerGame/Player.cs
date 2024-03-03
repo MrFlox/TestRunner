@@ -1,11 +1,17 @@
 using System;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 namespace RunnerGame
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerScript : MonoBehaviour
     {
+        [SerializeField] float speed = 15;
+        [SerializeField] float jumpPower = 7;
+        [SerializeField] GameObject bottomCheck;
+        [SerializeField] LayerMask groundLayer;
         Rigidbody physics;
 
         void Awake()
@@ -14,20 +20,19 @@ namespace RunnerGame
         }
         void Update()
         {
-            var direction = Vector3.zero;
             if (Input.GetKeyDown(KeyCode.A))
                 MoveLeft();
             if (Input.GetKeyDown(KeyCode.D))
                 MoveRight();
             if (Input.GetKeyDown(KeyCode.Space))
                 Jump();
-            direction.z = 1;
-            physics.AddForce(direction * 15);
+            if(IsGrounded)
+                physics.AddForce(Vector3.forward * speed);
         }
-        void Jump()
-        {
-            physics.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        }
+
+        bool IsGrounded => Physics.CheckSphere(bottomCheck.transform.position, .1f, groundLayer);
+
+        void Jump() => physics.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         void MoveRight()
         {
             var position = transform.position;
