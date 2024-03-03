@@ -10,14 +10,11 @@ namespace RunnerGame
     {
         [SerializeField] float speed = 15;
         [SerializeField] float jumpPower = 7;
-        [SerializeField] GameObject bottomCheck;
+        [SerializeField] Transform bottomCheck;
         [SerializeField] LayerMask groundLayer;
         Rigidbody physics;
 
-        void Awake()
-        {
-            physics = GetComponent<Rigidbody>();
-        }
+        void Awake() => physics = GetComponent<Rigidbody>();
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -30,9 +27,9 @@ namespace RunnerGame
                 physics.AddForce(Vector3.forward * speed);
         }
 
-        bool IsGrounded => Physics.CheckSphere(bottomCheck.transform.position, .1f, groundLayer);
+        bool IsGrounded => Physics.CheckSphere(bottomCheck.position, .1f, groundLayer);
 
-        void Jump() => physics.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        void Jump() => physics.AddForce((Vector3.up + Vector3.forward) * jumpPower, ForceMode.Impulse);
         void MoveRight()
         {
             var position = transform.position;
