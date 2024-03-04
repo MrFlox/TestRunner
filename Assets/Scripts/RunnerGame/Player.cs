@@ -7,7 +7,7 @@ namespace RunnerGame
 {
     [RequireComponent(typeof(Rigidbody))]
 
-    public class PlayerScript : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         [SerializeField] Swiper _swiper;
         [SerializeField] float speed = 15;
@@ -15,14 +15,13 @@ namespace RunnerGame
         [SerializeField] Transform bottomCheck;
         [SerializeField] LayerMask groundLayer;
         [SerializeField] float sideMove = 3;
-        Rigidbody physics;
-
-        // [SerializeField] InputAction move;
-
+        Rigidbody _rigidbody;
+        readonly Vector3 jumpVector = new(0, 1, .5f);
+        readonly Vector3 movingVelocity = new(0, 0, 8);
         void Awake()
         {
             Application.targetFrameRate = 60;
-            physics = GetComponent<Rigidbody>();
+            _rigidbody = GetComponent<Rigidbody>();
             _swiper.OnSwipe += OnSwipeHandler;
         }
         void OnSwipeHandler(SwipeDirection obj)
@@ -42,12 +41,6 @@ namespace RunnerGame
                     break;
             }
         }
-        // void OnSwipeHandler(Vector2 direction)
-        // {
-        //     if (direction == Vector2.left) MoveLeft();
-        //     if (direction == Vector2.right) MoveRight();
-        //     if (direction == Vector2.up) Jump();
-        // }
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -58,33 +51,23 @@ namespace RunnerGame
                 if (IsGrounded)
                     Jump();
         }
-
         void FixedUpdate()
         {
             if (IsGrounded)
-                physics.velocity = new Vector3(0, 0, 8);
+                _rigidbody.velocity = movingVelocity;
         }
-
         bool IsGrounded => Physics.CheckSphere(bottomCheck.position, .1f, groundLayer);
-        void Jump()
-        {
-            var jumpVector = new Vector3(0, 1, .5f);
-            physics.AddForce(jumpVector * jumpPower, ForceMode.Impulse);
-            // physics.velocity = new Vector3(0, 10, 8);
-        }
-        void MoveRight()
+        void Jump() =>
+            _rigidbody.AddForce(jumpVector * jumpPower, ForceMode.Impulse);
+        void MoveRight() => Move(sideMove);
+        void MoveLeft() => Move(-sideMove);
+        void Move(float sideOffset)
         {
             var position = transform.position;
-            position.x += sideMove;
-            if (position.x <= sideMove)
-                transform.position = position;
+            position.x += sideOffset;
+            if (IsNotInBounds(position)) return;
+            transform.position = position;
         }
-        void MoveLeft()
-        {
-            var position = transform.position;
-            position.x -= sideMove;
-            if (position.x >= -sideMove)
-                transform.position = position;
-        }
+        bool IsNotInBounds(Vector3 position) => position.x < -sideMove && position.x > sideMove;
     }
 }
