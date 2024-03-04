@@ -65,7 +65,6 @@ GameObject:
   - component: {fileID: 81927437996001270}
   - component: {fileID: 3954060213622321534}
   - component: {fileID: 921132094486479130}
-  - component: {fileID: 3562387176715634225}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -103,22 +102,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d04ae3aaf1598143a987212e5490fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  _swiper: {fileID: 0}
+  speed: 3
   jumpPower: 9
   bottomCheck: {fileID: 5826832178194077486}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   sideMove: 3
-  move:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b275d935-467c-45d0-bc5c-351718aa0b32
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!54 &3954060213622321534
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -169,53 +160,6 @@ CapsuleCollider:
   m_Height: 2.9029477
   m_Direction: 1
   m_Center: {x: 0, y: 0.95147383, z: 0}
---- !u!114 &3562387176715634225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323355000166552819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f79dd7a77044dba03273a1f0214ca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1ee44b0c-301b-46c8-b019-7761b52f2b44
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 00ccfb19-b4c6-4a6e-b923-88fce92ec3f1
-      m_Path: <Touchscreen>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: b1240984-f4d3-498f-97bf-6558b7dd171c
-    m_Processors: 
-    m_Interactions: Press
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: f2500823-7edb-48a8-852d-4f93a9f5112f
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100
 --- !u!1 &4046152816542841271
 GameObject:
   m_ObjectHideFlags: 0
