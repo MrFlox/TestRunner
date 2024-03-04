@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using RunnerGame.Obstacles;
 using RunnerGame.Player.Effects;
 using Shared;
 using UnityEngine;
@@ -18,7 +16,7 @@ namespace RunnerGame.Player
         [SerializeField] LayerMask groundLayer;
         [SerializeField] float sideMove = 3;
         private Rigidbody _rigidbody;
-        readonly Vector3 jumpVector = new(0, 1f, .5f);
+        readonly Vector3 jumpVector = new(0, 1f, .2f);
         internal Vector3 movingVelocity;
         private bool isFlyMode;
         private void Awake()

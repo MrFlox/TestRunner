@@ -8,7 +8,10 @@ namespace RunnerGame.Obstacles
         private const string Player = "Player";
         [SerializeField] CoinEffectSo effect;
 
-        void OnTriggerEnter(Collider other)
+        private void OnValidate() =>
+            transform.GetChild(0).GetComponent<MeshRenderer>().material.color = effect.color;
+
+        private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag(Player)) return;
             Destroy(gameObject);
