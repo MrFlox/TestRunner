@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b829ffe80c014256b63340ad5e22c365, type: 3}
   m_Name: FlyEffect
   m_EditorClassIdentifier: 
+  color: {r: 0.01844573, g: 1, b: 0, a: 1}
   delay: 10

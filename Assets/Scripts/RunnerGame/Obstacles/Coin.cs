@@ -6,16 +6,21 @@ namespace RunnerGame.Obstacles
     public class Coin : MonoBehaviour
     {
         private const string Player = "Player";
-        [SerializeField] CoinEffectSo effect;
-
-        private void OnValidate() =>
-            transform.GetChild(0).GetComponent<MeshRenderer>().material.color = effect.color;
+        [SerializeField] private CoinEffectSo effect;
+        [SerializeField] private MeshRenderer mesh;
+        private void OnValidate()
+        {
+            if (effect != null)
+                mesh.sharedMaterial.color = effect.color;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag(Player)) return;
             Destroy(gameObject);
-            other.transform.parent.GetComponent<Player.Player>().ApplyEffect(effect);
+            other.transform.parent.TryGetComponent<Player.Player>(out var player);
+            if (player != null)
+                player.ApplyEffect(effect);
         }
     }
 }

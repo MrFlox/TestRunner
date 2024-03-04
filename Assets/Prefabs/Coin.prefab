@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d97a1d123f7d1428bc376a0ac8da46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 0}
+  mesh: {fileID: 6552166432732481798}
 --- !u!135 &8385130434132851621
 SphereCollider:
   m_ObjectHideFlags: 0

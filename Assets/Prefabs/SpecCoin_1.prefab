@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d97a1d123f7d1428bc376a0ac8da46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 0}
+  mesh: {fileID: 1441630530122203601}
 --- !u!135 &5342295864463935478
 SphereCollider:
   m_ObjectHideFlags: 0
