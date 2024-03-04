@@ -9,6 +9,9 @@ namespace RunnerGame.Player
     public class Player : MonoBehaviour
     {
         const float SideAnimationTime = 0.05f;
+
+        [SerializeField] private ScoreManager scoreManager;
+        //-----------
         [SerializeField] Swiper _swiper;
         [SerializeField] protected float speed = 15;
         [SerializeField] float jumpPower = 7;
@@ -74,6 +77,12 @@ namespace RunnerGame.Player
         {
             StartCoroutine(MoveWithLerp(newX));
         }
+
+        public void CollectCoin()
+        {
+            scoreManager.Add();
+        }
+
         private  IEnumerator MoveWithLerp(float newX)
         {
             var newPos = transform.position;

@@ -8,11 +8,6 @@ namespace RunnerGame.Obstacles
         private const string Player = "Player";
         [SerializeField] private CoinEffectSo effect;
         [SerializeField] private MeshRenderer mesh;
-        // private void OnValidate()
-        // {
-        //     if (effect != null && mesh != null)
-        //         mesh.sharedMaterial.color = effect.color;
-        // }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -20,7 +15,11 @@ namespace RunnerGame.Obstacles
             Destroy(gameObject);
             other.transform.parent.TryGetComponent<Player.Player>(out var player);
             if (player != null)
-                player.ApplyEffect(effect);
+            {
+                if(effect!=null)
+                    player.ApplyEffect(effect);
+                player.CollectCoin();
+            }
         }
     }
 }
