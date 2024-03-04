@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using RunnerGame.Effects;
+using RunnerGame.Obstacles;
 using Shared;
 using UnityEngine;
 
-namespace RunnerGame
+namespace RunnerGame.Player
 {
     [RequireComponent(typeof(Rigidbody))]
     public class Player : MonoBehaviour
@@ -18,9 +20,9 @@ namespace RunnerGame
         private Rigidbody _rigidbody;
         readonly Vector3 jumpVector = new(0, 1f, .5f);
         internal Vector3 movingVelocity;
-        private Effect1 _effect1;
-        private Effect2 _effect2;
-        private Effect3 _effect3;
+        private SlowEffect _slowEffect;
+        private SpeedEffect _speedEffect;
+        private FlyEffect _flyEffect;
         private bool isFlyMode;
         private void Awake()
         {
@@ -29,9 +31,9 @@ namespace RunnerGame
             _swiper.OnSwipe += OnSwipeHandler;
             movingVelocity = new(0, 0, speed);
 
-            _effect1 = new Effect1(this);
-            _effect2 = new Effect2(this);
-            _effect3 = new Effect3(this);
+            _slowEffect = new SlowEffect(this);
+            _speedEffect = new SpeedEffect(this);
+            _flyEffect = new FlyEffect(this);
         }
         private void OnSwipeHandler(SwipeDirection obj)
         {
@@ -77,7 +79,6 @@ namespace RunnerGame
             if (IsNotInBounds(position)) return;
             MoveWithAnimation(position.x);
         }
-
         private void MoveWithAnimation(float newX)
         {
             StartCoroutine(MoveWithLerp(newX));
@@ -104,13 +105,13 @@ namespace RunnerGame
                 case Coin.Type.Default:
                     break;
                 case Coin.Type.Effect1:
-                    _effect1.ApplyEffect();
+                    _slowEffect.ApplyEffect();
                     break;
                 case Coin.Type.Effect2:
-                    _effect2.ApplyEffect();
+                    _speedEffect.ApplyEffect();
                     break;
                 case Coin.Type.Effect3:
-                    _effect3.ApplyEffect();
+                    _flyEffect.ApplyEffect();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

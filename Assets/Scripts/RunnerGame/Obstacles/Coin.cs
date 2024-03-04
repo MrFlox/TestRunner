@@ -1,9 +1,10 @@
 using UnityEngine;
 
-namespace RunnerGame
+namespace RunnerGame.Obstacles
 {
     public class Coin : MonoBehaviour
     {
+        private const string Player = "Player";
         [SerializeField] Type type;
         public enum Type
         {
@@ -14,11 +15,9 @@ namespace RunnerGame
         }
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                Destroy(gameObject);
-                other.transform.parent.GetComponent<Player>().ApplyEffect(type);
-            }
+            if (!other.CompareTag(Player)) return;
+            Destroy(gameObject);
+            other.transform.parent.GetComponent<Player.Player>().ApplyEffect(type);
         }
     }
 }

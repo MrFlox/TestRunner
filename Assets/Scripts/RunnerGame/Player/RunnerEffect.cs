@@ -2,13 +2,13 @@
 using System.Collections;
 using UnityEngine;
 
-namespace RunnerGame
+namespace RunnerGame.Player
 {
     class RunnerEffect
     {
         readonly float _delay = 10;
-        protected Player _player;
-        public RunnerEffect(Player player)
+        protected RunnerGame.Player.Player _player;
+        public RunnerEffect(RunnerGame.Player.Player player)
         {
             _player = player;
         }

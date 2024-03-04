@@ -4,10 +4,6 @@ using UnityEngine.EventSystems;
 
 namespace Shared
 {
-    public interface ISwiper
-    {
-        event Action<SwipeDirection> OnSwipe;
-    }
     public enum SwipeDirection
     {
         Left, Right, Top, Bottom
@@ -15,22 +11,20 @@ namespace Shared
     public class Swiper : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ISwiper
     {
         public float SwipeThreshold = 50f;
-        Vector2 _swipeStartPosition;
-        Vector2 _swipeEndPosition;
+        private Vector2 _swipeStartPosition;
+        private Vector2 _swipeEndPosition;
 
         public event Action<SwipeDirection> OnSwipe;
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
+        public void OnPointerDown(PointerEventData eventData) =>
             _swipeStartPosition = eventData.position;
-        }
         public void OnPointerUp(PointerEventData eventData)
         {
             _swipeEndPosition = eventData.position;
             DetectSwipe();
         }
 
-        void DetectSwipe()
+        private void DetectSwipe()
         {
             var swipeDistance = Vector2.Distance(_swipeStartPosition, _swipeEndPosition);
 
