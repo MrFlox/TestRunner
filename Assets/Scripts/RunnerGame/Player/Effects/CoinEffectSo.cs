@@ -2,24 +2,21 @@
 using System.Collections;
 using UnityEngine;
 
-namespace RunnerGame.Player
+namespace RunnerGame.Player.Effects
 {
-    class RunnerEffect
+    public class CoinEffectSo : ScriptableObject
     {
-        readonly float _delay = 10;
-        protected RunnerGame.Player.Player _player;
-        public RunnerEffect(RunnerGame.Player.Player player)
+        [SerializeField] private float delay = 10;
+        protected Player _player;
+        public void ApplyEffect(Player player)
         {
             _player = player;
-        }
-        public void ApplyEffect()
-        {
             _player.StartCoroutine(EnableEffect());
         }
         private IEnumerator EnableEffect()
         {
             EnableTheEffect();
-            yield return new WaitForSeconds(_delay);
+            yield return new WaitForSeconds(delay);
             DisableTheEffect();
         }
         protected virtual void EnableTheEffect()

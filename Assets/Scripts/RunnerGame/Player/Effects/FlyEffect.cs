@@ -1,14 +1,11 @@
-﻿using RunnerGame.Player;
+﻿using UnityEngine;
 
-namespace RunnerGame.Effects
+namespace RunnerGame.Player.Effects
 {
-    class FlyEffect : RunnerEffect
+    [CreateAssetMenu(menuName = "Coins/FlyEffect", fileName = "FlyEffect", order = 0)]
+    class FlyEffect : CoinEffectSo
     {
-        public FlyEffect(Player.Player player) : base(player)
-        {
-        }
         protected override void EnableTheEffect() => _player.Fly();
-
         protected override void DisableTheEffect() => _player.StopFly();
     }
 }

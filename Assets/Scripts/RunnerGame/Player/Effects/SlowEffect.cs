@@ -1,13 +1,10 @@
-﻿using RunnerGame.Player;
+﻿using UnityEngine;
 
-namespace RunnerGame.Effects
+namespace RunnerGame.Player.Effects
 {
-    class SlowEffect : RunnerEffect
+    [CreateAssetMenu(menuName = "Coins/SlowEffect", fileName = "SlowEffect", order = 0)]
+    class SlowEffect : CoinEffectSo
     {
-        public SlowEffect(Player.Player player) : base(player)
-        {
-        }
-
         protected override void EnableTheEffect() => _player.movingVelocity *= .5f;
         protected override void DisableTheEffect() => _player.movingVelocity /= .5f;
     }
