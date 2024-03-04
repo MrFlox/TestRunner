@@ -8,11 +8,11 @@ namespace RunnerGame.Obstacles
         private const string Player = "Player";
         [SerializeField] private CoinEffectSo effect;
         [SerializeField] private MeshRenderer mesh;
-        private void OnValidate()
-        {
-            if (effect != null)
-                mesh.sharedMaterial.color = effect.color;
-        }
+        // private void OnValidate()
+        // {
+        //     if (effect != null && mesh != null)
+        //         mesh.sharedMaterial.color = effect.color;
+        // }
 
         private void OnTriggerEnter(Collider other)
         {
