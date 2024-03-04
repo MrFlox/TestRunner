@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using Shared;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace RunnerGame
@@ -10,21 +10,30 @@ namespace RunnerGame
     {
         const float SideAnimationTime = 0.05f;
         [SerializeField] Swiper _swiper;
-        [SerializeField] float speed = 15;
+        [SerializeField] protected float speed = 15;
         [SerializeField] float jumpPower = 7;
         [SerializeField] Transform bottomCheck;
         [SerializeField] LayerMask groundLayer;
         [SerializeField] float sideMove = 3;
-        Rigidbody _rigidbody;
-        readonly Vector3 jumpVector = new(0, 1, .5f);
-        readonly Vector3 movingVelocity = new(0, 0, 8);
-        void Awake()
+        private Rigidbody _rigidbody;
+        readonly Vector3 jumpVector = new(0, 1f, .5f);
+        internal Vector3 movingVelocity;
+        private Effect1 _effect1;
+        private Effect2 _effect2;
+        private Effect3 _effect3;
+        private bool isFlyMode;
+        private void Awake()
         {
             Application.targetFrameRate = 60;
             _rigidbody = GetComponent<Rigidbody>();
             _swiper.OnSwipe += OnSwipeHandler;
+            movingVelocity = new(0, 0, speed);
+
+            _effect1 = new Effect1(this);
+            _effect2 = new Effect2(this);
+            _effect3 = new Effect3(this);
         }
-        void OnSwipeHandler(SwipeDirection obj)
+        private void OnSwipeHandler(SwipeDirection obj)
         {
             switch (obj)
             {
@@ -41,7 +50,7 @@ namespace RunnerGame
                     break;
             }
         }
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
                 MoveLeft();
@@ -51,30 +60,29 @@ namespace RunnerGame
                 if (IsGrounded)
                     Jump();
         }
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (IsGrounded)
                 _rigidbody.velocity = movingVelocity;
         }
-        bool IsGrounded => Physics.CheckSphere(bottomCheck.position, .1f, groundLayer);
-        void Jump() =>
+        private bool IsGrounded => Physics.CheckSphere(bottomCheck.position, .1f, groundLayer);
+        private void Jump() =>
             _rigidbody.AddForce(jumpVector * jumpPower, ForceMode.Impulse);
-        void MoveRight() => Move(sideMove);
-        void MoveLeft() => Move(-sideMove);
-        void Move(float sideOffset)
+        private void MoveRight() => Move(sideMove);
+        private void MoveLeft() => Move(-sideMove);
+        private void Move(float sideOffset)
         {
             var position = transform.position;
             position.x += sideOffset;
             if (IsNotInBounds(position)) return;
-            // transform.position = position;
             MoveWithAnimation(position.x);
         }
 
-        void MoveWithAnimation(float newX)
+        private void MoveWithAnimation(float newX)
         {
             StartCoroutine(MoveWithLerp(newX));
         }
-        IEnumerator MoveWithLerp(float newX)
+        private  IEnumerator MoveWithLerp(float newX)
         {
             var newPos = transform.position;
             var startTime = Time.time;
@@ -88,6 +96,39 @@ namespace RunnerGame
             newPos.x = newX;
             transform.position = newPos;
         }
-        bool IsNotInBounds(Vector3 position) => position.x < -sideMove && position.x > sideMove;
+        private bool IsNotInBounds(Vector3 position) => position.x < -sideMove && position.x > sideMove;
+        public void ApplyEffect(Coin.Type type)
+        {
+            switch (type)
+            {
+                case Coin.Type.Default:
+                    break;
+                case Coin.Type.Effect1:
+                    _effect1.ApplyEffect();
+                    break;
+                case Coin.Type.Effect2:
+                    _effect2.ApplyEffect();
+                    break;
+                case Coin.Type.Effect3:
+                    _effect3.ApplyEffect();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+        }
+        public void Fly()
+        {
+            var pos = transform.position;
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            pos.y = 2.2f;
+            transform.position = pos;
+        }
+        public void StopFly()
+        {
+            var pos = transform.position;
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            pos.y = 1.2f;
+            transform.position = pos;
+        }
     }
 }

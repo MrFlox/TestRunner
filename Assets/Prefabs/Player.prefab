@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _swiper: {fileID: 0}
-  speed: 3
+  speed: 10
   jumpPower: 9
   bottomCheck: {fileID: 5826832178194077486}
   groundLayer:
