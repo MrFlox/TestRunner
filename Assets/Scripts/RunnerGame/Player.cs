@@ -1,14 +1,14 @@
-using System;
+using System.Collections;
 using Shared;
+using Unity.Mathematics;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 namespace RunnerGame
 {
     [RequireComponent(typeof(Rigidbody))]
-
     public class Player : MonoBehaviour
     {
+        const float SideAnimationTime = 0.05f;
         [SerializeField] Swiper _swiper;
         [SerializeField] float speed = 15;
         [SerializeField] float jumpPower = 7;
@@ -66,7 +66,27 @@ namespace RunnerGame
             var position = transform.position;
             position.x += sideOffset;
             if (IsNotInBounds(position)) return;
-            transform.position = position;
+            // transform.position = position;
+            MoveWithAnimation(position.x);
+        }
+
+        void MoveWithAnimation(float newX)
+        {
+            StartCoroutine(MoveWithLerp(newX));
+        }
+        IEnumerator MoveWithLerp(float newX)
+        {
+            var newPos = transform.position;
+            var startTime = Time.time;
+            while (Time.time - startTime < SideAnimationTime)
+            {
+                var t = (Time.time - startTime) / SideAnimationTime;
+                newPos.x = Mathf.Lerp(newPos.x, newX, t);
+                transform.position = newPos;
+                yield return null;
+            }
+            newPos.x = newX;
+            transform.position = newPos;
         }
         bool IsNotInBounds(Vector3 position) => position.x < -sideMove && position.x > sideMove;
     }
