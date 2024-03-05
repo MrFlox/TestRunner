@@ -9,14 +9,12 @@ public class GameLifetimeScope : LifetimeScope
     private Game _game;
     protected override void Configure(IContainerBuilder builder)
     {
-        _game = new Game(this);
+        var scoreManager = new ScoreManager();
+        builder.RegisterInstance(scoreManager);
+        _game = new Game(this, scoreManager);
         builder.RegisterInstance(_game);
         DontDestroyOnLoad(gameObject);
     }
-
     [Button]
-    public void ChangeState(Game.GameStates state)
-    {
-        _game.StateMachine.SetState(state);
-    }
+    public void ChangeState(Game.GameStates state) => _game.StateMachine.SetState(state);
 }

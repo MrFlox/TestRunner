@@ -7,15 +7,14 @@ namespace UI
 {
     public class ScoreRenderer : MonoBehaviour
     {
-        private TMP_Text _text;
-        [SerializeField] private ScoreManager scoreManager;
-        // [Inject] private GameLifetimeScope.HelloWorldService _helloWorldService;
+        [SerializeField] private TMP_Text _text;
+        private ScoreManager _scoreManager;
+        [Inject] private void Construct(ScoreManager scoreManager) => _scoreManager = scoreManager;
         private void Awake()
         {
-            _text = GetComponent<TMP_Text>();
-            scoreManager.OnChangeScore += OnChangeScoreHandler;
-            // _helloWorldService.Hello();
+            _scoreManager.OnChangeScore += OnChangeScoreHandler;
+            OnChangeScoreHandler();
         }
-        private void OnChangeScoreHandler(int newValue) => _text.text = $"Score: {newValue}";
+        private void OnChangeScoreHandler(int newValue = 0) => _text.text = $"Score: {_scoreManager.Value}";
     }
 }

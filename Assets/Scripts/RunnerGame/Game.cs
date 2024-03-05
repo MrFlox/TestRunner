@@ -14,10 +14,11 @@ namespace RunnerGame
             None,
             MainMenu,
             LoadLevel,
-            GameOver
+            GameOver,
+            Restart
         }
 
-        public Game(LifetimeScope scope)
+        public Game(LifetimeScope scope, ScoreManager scoreManager)
         {
             _sceneLoader = new SceneLoader(scope);
             StateMachine = new();
@@ -25,7 +26,8 @@ namespace RunnerGame
             {
                 [GameStates.MainMenu] = new MainMenuState(_sceneLoader),
                 [GameStates.LoadLevel] = new LoadLevelState(_sceneLoader),
-                [GameStates.GameOver] = new GameOverState(_sceneLoader)
+                [GameStates.GameOver] = new GameOverState(_sceneLoader),
+                [GameStates.Restart] = new RestartState(this, scoreManager)
             });
             StateMachine.SetState(GameStates.MainMenu);
         }

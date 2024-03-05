@@ -2,6 +2,7 @@ using System.Collections;
 using RunnerGame.Player.Effects;
 using Shared;
 using UnityEngine;
+using VContainer;
 
 namespace RunnerGame.Player
 {
@@ -10,18 +11,19 @@ namespace RunnerGame.Player
     {
         const float SideAnimationTime = 0.05f;
 
-        [SerializeField] private ScoreManager scoreManager;
-        //-----------
         [SerializeField] Swiper _swiper;
         [SerializeField] protected float speed = 15;
         [SerializeField] float jumpPower = 7;
         [SerializeField] Transform bottomCheck;
         [SerializeField] LayerMask groundLayer;
         [SerializeField] float sideMove = 3;
+        private ScoreManager _scoreManager;
         private Rigidbody _rigidbody;
         readonly Vector3 jumpVector = new(0, 1f, .2f);
         internal Vector3 movingVelocity;
         private bool isFlyMode;
+
+        [Inject] private void Construct(ScoreManager scoreManager) => _scoreManager = scoreManager;
         private void Awake()
         {
             Application.targetFrameRate = 60;
@@ -80,7 +82,7 @@ namespace RunnerGame.Player
 
         public void CollectCoin()
         {
-            scoreManager.Add();
+            _scoreManager.Add();
         }
 
         private  IEnumerator MoveWithLerp(float newX)

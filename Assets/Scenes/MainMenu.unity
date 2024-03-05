@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPlay: {fileID: 1143714837}
+  nextState: 2
 --- !u!1 &180777519
 GameObject:
   m_ObjectHideFlags: 0

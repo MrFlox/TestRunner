@@ -3,17 +3,16 @@ using UnityEngine;
 
 namespace RunnerGame
 {
-    public class ScoreManager : MonoBehaviour
+    public class ScoreManager
     {
-        private int score;
-
+        private int _score;
         public event Action<int> OnChangeScore;
-
+        public int Value => _score;
         public void Add(int value = 1)
         {
-            score += value;
-            OnChangeScore?.Invoke(score);
+            _score += value;
+            OnChangeScore?.Invoke(_score);
         }
-
+        public void Clear() => _score = 0;
     }
 }
