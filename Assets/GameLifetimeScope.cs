@@ -1,4 +1,5 @@
 using RunnerGame;
+using RunnerGame.Obstacles;
 using TriInspector;
 using UnityEngine;
 using VContainer;

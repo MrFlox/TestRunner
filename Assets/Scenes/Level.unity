@@ -946,6 +946,8 @@ MonoBehaviour:
   segmentVariants:
   - {fileID: 4862102844235148811, guid: bf1d66029e4e446489277ab391309917, type: 3}
   segmentsOnStage: []
+  coinPrefab: {fileID: 2777102947598314549, guid: 546534c68d839ec42aec583ed281ebcd,
+    type: 3}
 --- !u!4 &1114912098
 Transform:
   m_ObjectHideFlags: 0

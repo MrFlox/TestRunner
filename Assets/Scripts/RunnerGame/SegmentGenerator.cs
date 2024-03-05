@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RunnerGame.Obstacles;
 using RunnerGame.Segments;
 using UnityEngine;
 
@@ -15,10 +16,13 @@ namespace RunnerGame
         [SerializeField] private Transform hero;
         [SerializeField] private List<Segment> segmentVariants;
         [SerializeField] private List<Segment> segmentsOnStage = new();
-        private SegmentFactory _factory;
+        [SerializeField] private Coin coinPrefab;
+        private ItemFactory<Segment> _segmentFactory;
+        private ItemFactory<Coin> _coinFactory;
         private void Start()
         {
-            _factory = new SegmentFactory(segmentVariants);
+            _segmentFactory = new ItemFactory<Segment>(segmentVariants);
+            _coinFactory = new ItemFactory<Coin>(new List<Coin>() { coinPrefab }, 200);
             GenerateFistSegments();
         }
         private void GenerateFistSegments()
@@ -36,8 +40,8 @@ namespace RunnerGame
             segmentsOnStage[^(InitialSegmentCount-2)].transform.position.z - hero.position.z;
         private void GenerateNewSegment(bool deleteOld = true)
         {
-            var newSegment = _factory.Create();
-            newSegment.GenerateCoins();
+            var newSegment = _segmentFactory.Create();
+            newSegment.ClearOldCointAndGenerateNew(_coinFactory);
             newSegment.SetPosition(GetLastSegmentPosition() + SegmentSize);
             segmentsOnStage.Add(newSegment);
             if (!deleteOld) return;
@@ -47,7 +51,7 @@ namespace RunnerGame
         {
             var first = segmentsOnStage[0];
             segmentsOnStage.Remove(first);
-            _factory.Release(first);
+            _segmentFactory.Release(first);
         }
         private float GetLastSegmentPosition()
         {

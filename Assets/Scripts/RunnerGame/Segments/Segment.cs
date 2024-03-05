@@ -5,19 +5,26 @@ using UnityEngine;
 
 namespace RunnerGame.Segments
 {
-    public class Segment: MonoBehaviour
+    public class Segment : MonoBehaviour
     {
         [SerializeField] private Coin coinPrefab;
         [SerializeField] private Transform coinPositionsLayer;
         [SerializeField] private List<Vector3> coinPositions;
         [SerializeField] private List<Coin> generatedCoins = new();
+        private ItemFactory<Coin> _coinFactory;
         public void SetPosition(float newPosition)
         {
             var position = transform.position;
             position.z = newPosition;
             transform.position = position;
         }
-        public void GenerateCoins()
+        public void ClearOldCointAndGenerateNew(ItemFactory<Coin> coinFactory)
+        {
+            if (_coinFactory == null) _coinFactory = coinFactory;
+            ClearOldCoins();
+            GenerateNewCoins();
+        }
+        private void GenerateNewCoins()
         {
             foreach (var coinPosition in coinPositions)
             {
@@ -35,12 +42,12 @@ namespace RunnerGame.Segments
         }
         private Coin CreateNewCoin()
         {
-            return Instantiate(coinPrefab);
+            return _coinFactory.Create();
         }
         public void RemoveCoin(Coin coin)
         {
             generatedCoins.Remove(coin);
-            Destroy(coin.gameObject);
+            _coinFactory.Release(coin);
         }
         public void ClearOldCoins()
         {
