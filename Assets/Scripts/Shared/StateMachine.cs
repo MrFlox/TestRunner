@@ -32,6 +32,5 @@ namespace Shared
             OnChangeState?.Invoke(_currentState);
             _states[newState].EnterState();
         }
-
     }
 }

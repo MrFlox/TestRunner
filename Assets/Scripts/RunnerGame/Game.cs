@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using RunnerGame.GameStates;
 using Shared;
+using VContainer.Unity;
 
 namespace RunnerGame
 {
@@ -16,9 +17,9 @@ namespace RunnerGame
             GameOver
         }
 
-        public Game()
+        public Game(LifetimeScope scope)
         {
-            _sceneLoader = new SceneLoader();
+            _sceneLoader = new SceneLoader(scope);
             StateMachine = new();
             StateMachine.InitStates(new Dictionary<GameStates,IGameState>()
             {
