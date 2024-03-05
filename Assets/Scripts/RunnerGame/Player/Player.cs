@@ -21,9 +21,14 @@ namespace RunnerGame.Player
         private Rigidbody _rigidbody;
         readonly Vector3 jumpVector = new(0, 1f, .2f);
         internal Vector3 movingVelocity;
-        private bool isFlyMode;
+        private bool _isFlyMode;
+        private Game _game;
 
-        [Inject] private void Construct(ScoreManager scoreManager) => _scoreManager = scoreManager;
+        [Inject] private void Construct(ScoreManager scoreManager, Game game)
+        {
+            _scoreManager = scoreManager;
+            _game = game;
+        }
         private void Awake()
         {
             Application.targetFrameRate = 60;
@@ -79,12 +84,10 @@ namespace RunnerGame.Player
         {
             StartCoroutine(MoveWithLerp(newX));
         }
-
         public void CollectCoin()
         {
             _scoreManager.Add();
         }
-
         private  IEnumerator MoveWithLerp(float newX)
         {
             var newPos = transform.position;
@@ -115,5 +118,6 @@ namespace RunnerGame.Player
             pos.y = 1.2f;
             transform.position = pos;
         }
+        public void GameOver() => _game.StateMachine.SetState(Game.GameStates.GameOver);
     }
 }
