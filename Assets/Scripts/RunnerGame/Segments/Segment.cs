@@ -41,10 +41,7 @@ namespace RunnerGame.Segments
             coin.SetSegment(this);
             return coin;
         }
-        private Coin CreateNewCoin()
-        {
-            return _coinFactory.Create();
-        }
+        private Coin CreateNewCoin() => _coinFactory.Create();
         public void RemoveCoin(Coin coin)
         {
             generatedCoins.Remove(coin);

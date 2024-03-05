@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace RunnerGame.LevelItems
 {
+    /**
+     * Basic Oblstacle. If there is collision - you failed.
+     */
     public class Obstacle : MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)
