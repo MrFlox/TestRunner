@@ -8,7 +8,6 @@ namespace RunnerGame.Player.Effects
     {
         public Material Material;
         [SerializeField] private float delay = 10;
-
         protected Player _player;
         public void ApplyEffect(Player player)
         {
@@ -21,14 +20,7 @@ namespace RunnerGame.Player.Effects
             yield return new WaitForSeconds(delay);
             DisableTheEffect();
         }
-        protected virtual void EnableTheEffect()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected virtual void DisableTheEffect()
-        {
-            throw new NotImplementedException();
-        }
+        protected virtual void EnableTheEffect() => throw new NotImplementedException();
+        protected virtual void DisableTheEffect() => throw new NotImplementedException();
     }
 }

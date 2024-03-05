@@ -1,25 +1,20 @@
-using System;
 using System.Collections.Generic;
 using RunnerGame.Player.Effects;
 using RunnerGame.Segments;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace RunnerGame.Obstacles
+namespace RunnerGame.LevelItems
 {
     public class Coin : MonoBehaviour
     {
+        private const string Player = "Player";
         [SerializeField] private List<CoinEffectSo> coinTypes;
         [SerializeField] private Material defaulCoinMaterial;
-        private const string Player = "Player";
         [SerializeField] private CoinEffectSo effect;
         [SerializeField] private MeshRenderer mesh;
         private Segment _segment;
-        private Color _defaultColor;
-        private void Awake()
-        {
-            _defaultColor = mesh.material.color;
-        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag(Player)) return;

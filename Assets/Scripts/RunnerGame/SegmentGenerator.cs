@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using RunnerGame.Obstacles;
+using RunnerGame.LevelItems;
 using RunnerGame.Segments;
 using UnityEngine;
 
