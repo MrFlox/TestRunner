@@ -6,7 +6,7 @@ namespace RunnerGame
 {
     public class Game
     {
-        private StateMachine<GameStates> _stateMachine;
+        public readonly StateMachine<GameStates> StateMachine;
         private SceneLoader _sceneLoader;
         public enum GameStates
         {
@@ -19,15 +19,14 @@ namespace RunnerGame
         public Game()
         {
             _sceneLoader = new SceneLoader();
-            _stateMachine = new();
-            _stateMachine.InitStates(new Dictionary<GameStates,IGameState>()
+            StateMachine = new();
+            StateMachine.InitStates(new Dictionary<GameStates,IGameState>()
             {
                 [GameStates.MainMenu] = new MainMenuState(_sceneLoader),
                 [GameStates.LoadLevel] = new LoadLevelState(_sceneLoader),
                 [GameStates.GameOver] = new GameOverState(_sceneLoader)
             });
-
-            _stateMachine.SetState(GameStates.MainMenu);
+            StateMachine.SetState(GameStates.MainMenu);
         }
     }
 }

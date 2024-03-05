@@ -9,10 +9,9 @@ namespace RunnerGame.GameStates
         {
             _sceneLoader = sceneLoader;
         }
-
         public void EnterState()
         {
-            throw new System.NotImplementedException();
+            _sceneLoader.LoadScene("Level");
         }
     }
 }
