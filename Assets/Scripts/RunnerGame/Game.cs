@@ -8,7 +8,6 @@ namespace RunnerGame
     public class Game
     {
         public readonly StateMachine<GameStates> StateMachine;
-        private SceneLoader _sceneLoader;
         public enum GameStates
         {
             None,
@@ -17,16 +16,15 @@ namespace RunnerGame
             GameOver,
             Restart
         }
-
         public Game(LifetimeScope scope, ScoreManager scoreManager)
         {
-            _sceneLoader = new SceneLoader(scope);
+            var sceneLoader = new SceneLoader(scope);
             StateMachine = new();
             StateMachine.InitStates(new Dictionary<GameStates,IGameState>()
             {
-                [GameStates.MainMenu] = new MainMenuState(_sceneLoader),
-                [GameStates.LoadLevel] = new LoadLevelState(_sceneLoader),
-                [GameStates.GameOver] = new GameOverState(_sceneLoader),
+                [GameStates.MainMenu] = new LoadSceneState(sceneLoader, Scenes.MAIN_MENU),
+                [GameStates.LoadLevel] = new LoadSceneState(sceneLoader, Scenes.LEVEL_SCENE),
+                [GameStates.GameOver] = new LoadSceneState(sceneLoader, Scenes.GAME_OVER_SCENE),
                 [GameStates.Restart] = new RestartState(this, scoreManager)
             });
             StateMachine.SetState(GameStates.MainMenu);
