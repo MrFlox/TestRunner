@@ -6,7 +6,7 @@ namespace RunnerGame.Player.Effects
 {
     public class CoinEffectSo : ScriptableObject
     {
-        public Color color = Color.white;
+        public Material Material;
         [SerializeField] private float delay = 10;
 
         protected Player _player;

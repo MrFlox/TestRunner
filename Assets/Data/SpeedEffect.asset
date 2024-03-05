@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d8fb90a90442f48c4991bc6330425f, type: 3}
   m_Name: SpeedEffect
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0.84533167, a: 1}
+  Material: {fileID: 2100000, guid: b40ab2831c80aa5438f0a48e481558eb, type: 2}
   delay: 10

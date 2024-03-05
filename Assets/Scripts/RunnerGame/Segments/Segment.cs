@@ -36,6 +36,7 @@ namespace RunnerGame.Segments
         {
             var coin = CreateNewCoin();
             coin.transform.SetParent(transform);
+            coin.SetRandomType();
             coin.transform.position = coinPosition + transform.position;
             coin.SetSegment(this);
             return coin;

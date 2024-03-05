@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d97a1d123f7d1428bc376a0ac8da46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinTypes:
+  - {fileID: 11400000, guid: 90bfba88e0b96d54e80732bb48c646cc, type: 2}
+  - {fileID: 11400000, guid: 8381dd17690b30446b9f3f2e2cd8c0b2, type: 2}
+  - {fileID: 11400000, guid: 3cf178bbaa35e084ab6fccc78e89a3f3, type: 2}
+  defaulCoinMaterial: {fileID: 2100000, guid: 82e2efde9538ecf4b9384b3baf91de09, type: 2}
   effect: {fileID: 0}
   mesh: {fileID: 6552166432732481798}
 --- !u!135 &8385130434132851621
