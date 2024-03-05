@@ -25,7 +25,7 @@ namespace RunnerGame
         }
         private void Update()
         {
-            if (segmentsOnStage.Count <= InitialSegmentCount) return;
+            if (segmentsOnStage.Count < InitialSegmentCount) return;
             if (DistanceFromCenterOfSegment() < DistanceBetweenPlayerAndSegmentCenter)
                 GenerateNewSegment();
         }
@@ -47,8 +47,9 @@ namespace RunnerGame
         }
         private float GetLastSegmentPosition()
         {
+            if (segmentsOnStage.Count == 0) return SegmentSize;
             var lastSegment = segmentsOnStage[^1];
-            return lastSegment != null ? lastSegment.transform.position.z : SegmentSize;
+            return lastSegment.transform.position.z ;
         }
     }
 }

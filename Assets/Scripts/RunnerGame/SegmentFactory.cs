@@ -19,8 +19,14 @@ namespace RunnerGame
                 true, 15, 100 );
         }
         private Segment CreateSegment() => Object.Instantiate(_segments[0]);
-        private void OnTakeSegmentFromPool(Segment segment) => segment.gameObject.SetActive(true);
-        private void OnReturnSegment(Segment segment) => segment.gameObject.SetActive(false);
+        private void OnTakeSegmentFromPool(Segment segment)
+        {
+            // segment.gameObject.SetActive(true);
+        }
+        private void OnReturnSegment(Segment segment)
+        {
+            // segment.gameObject.SetActive(false);
+        }
         private void OnDestroySegment(Segment segment) => Object.Destroy(segment.gameObject);
         public Segment Create() => _pool.Get();
         public void Release(Segment segment) => _pool.Release(segment);
