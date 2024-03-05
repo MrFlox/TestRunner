@@ -4,6 +4,7 @@ namespace RunnerGame.GameStates
 {
     public class GameOverState:IGameState
     {
+        private const string SceneName = "GameOver";
         private readonly SceneLoader _sceneLoader;
         public GameOverState(SceneLoader sceneLoader)
         {
@@ -12,7 +13,7 @@ namespace RunnerGame.GameStates
 
         public void EnterState()
         {
-            throw new System.NotImplementedException();
+            _sceneLoader.LoadScene(SceneName);
         }
     }
 }
