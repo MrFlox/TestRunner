@@ -244,6 +244,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7626669502880471227, guid: 36e348c6d856af6499aadb1389f57adb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8386579447358466213, guid: 36e348c6d856af6499aadb1389f57adb,
         type: 3}
       propertyPath: type
@@ -935,7 +940,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SegmentSize: 40
-  startZPosition: 150
   InitialSegmentCount: 5
   DistanceBetweenPlayerAndSegmentCenter: 0.1
   hero: {fileID: 5883532332177266393}
@@ -1307,6 +1311,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7626669502880471227, guid: 36e348c6d856af6499aadb1389f57adb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8386579447358466213, guid: 36e348c6d856af6499aadb1389f57adb,
         type: 3}
       propertyPath: type
@@ -1613,6 +1622,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Coin (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626669502880471227, guid: 36e348c6d856af6499aadb1389f57adb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8386579447358466213, guid: 36e348c6d856af6499aadb1389f57adb,
         type: 3}

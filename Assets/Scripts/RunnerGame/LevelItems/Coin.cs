@@ -1,4 +1,5 @@
 using RunnerGame.Player.Effects;
+using RunnerGame.Segments;
 using UnityEngine;
 
 namespace RunnerGame.Obstacles
@@ -8,11 +9,12 @@ namespace RunnerGame.Obstacles
         private const string Player = "Player";
         [SerializeField] private CoinEffectSo effect;
         [SerializeField] private MeshRenderer mesh;
+        private Segment _segment;
 
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag(Player)) return;
-            Destroy(gameObject);
+            _segment.RemoveCoin(this);
             other.transform.parent.TryGetComponent<Player.Player>(out var player);
             if (player != null)
             {
@@ -21,5 +23,6 @@ namespace RunnerGame.Obstacles
                 player.CollectCoin();
             }
         }
+        public void SetSegment(Segment segment) => _segment = segment;
     }
 }

@@ -19,10 +19,10 @@ namespace RunnerGame.Player
         [SerializeField] float sideMove = 3;
         private ScoreManager _scoreManager;
         private Rigidbody _rigidbody;
-        readonly Vector3 jumpVector = new(0, 1f, .2f);
         internal Vector3 movingVelocity;
         private bool _isFlyMode;
         private Game _game;
+        private readonly Vector3 jumpVector = new(0, 1f, .2f);
 
         [Inject] private void Construct(ScoreManager scoreManager, Game game)
         {
@@ -80,14 +80,8 @@ namespace RunnerGame.Player
             if (IsNotInBounds(position)) return;
             MoveWithAnimation(position.x);
         }
-        private void MoveWithAnimation(float newX)
-        {
-            StartCoroutine(MoveWithLerp(newX));
-        }
-        public void CollectCoin()
-        {
-            _scoreManager.Add();
-        }
+        private void MoveWithAnimation(float newX) => StartCoroutine(MoveWithLerp(newX));
+        public void CollectCoin() => _scoreManager.Add();
         private  IEnumerator MoveWithLerp(float newX)
         {
             var newPos = transform.position;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace RunnerGame
 {
+    /**
+     * This class generates path for the player from different prefab variants.
+     */
     public class SegmentGenerator : MonoBehaviour
     {
         [SerializeField] private float SegmentSize = 40f;
@@ -34,6 +37,7 @@ namespace RunnerGame
         private void GenerateNewSegment(bool deleteOld = true)
         {
             var newSegment = _factory.Create();
+            newSegment.GenerateCoins();
             newSegment.SetPosition(GetLastSegmentPosition() + SegmentSize);
             segmentsOnStage.Add(newSegment);
             if (!deleteOld) return;
