@@ -1,6 +1,5 @@
 using RunnerGame;
 using TriInspector;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 

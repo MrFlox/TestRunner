@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using RunnerGame.LevelItems;
-using RunnerGame.Segments;
 using UnityEngine;
 
-namespace RunnerGame
+namespace RunnerGame.Segments
 {
     /**
      * This class generates path for the player from different prefab variants.
@@ -17,8 +16,8 @@ namespace RunnerGame
         [SerializeField] private List<Segment> segmentVariants;
         [SerializeField] private List<Segment> segmentsOnStage = new();
         [SerializeField] private Coin coinPrefab;
-        private ItemFactory<Segment> _segmentFactory;
-        private ItemFactory<Coin> _coinFactory;
+        private IAbstractFactory<Segment> _segmentFactory;
+        private IAbstractFactory<Coin> _coinFactory;
         private void Start()
         {
             _segmentFactory = new ItemFactory<Segment>(segmentVariants);

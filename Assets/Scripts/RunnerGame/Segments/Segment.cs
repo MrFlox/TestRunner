@@ -11,14 +11,14 @@ namespace RunnerGame.Segments
         [SerializeField] private Transform coinPositionsLayer;
         [SerializeField] private List<Vector3> coinPositions;
         [SerializeField] private List<Coin> generatedCoins = new();
-        private ItemFactory<Coin> _coinFactory;
+        private IAbstractFactory<Coin> _coinFactory;
         public void SetPosition(float newPosition)
         {
             var position = transform.position;
             position.z = newPosition;
             transform.position = position;
         }
-        public void ClearOldCointAndGenerateNew(ItemFactory<Coin> coinFactory)
+        public void ClearOldCointAndGenerateNew(IAbstractFactory<Coin> coinFactory)
         {
             if (_coinFactory == null) _coinFactory = coinFactory;
             ClearOldCoins();

@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 
 namespace RunnerGame
 {
-    public class ItemFactory<T> where T : MonoBehaviour
+    public class ItemFactory<T> : IAbstractFactory<T> where T: MonoBehaviour
     {
         private readonly List<T> _segments;
         private readonly ObjectPool<T> _pool;
