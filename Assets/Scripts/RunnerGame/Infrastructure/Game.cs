@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using RunnerGame.Infrastructure.GameStates;
 using Shared;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
+using VContainer;
 using VContainer.Unity;
 
 namespace RunnerGame.Infrastructure
 {
     public class Game
     {
-        private readonly StateMachine<GameStates> _stateMachine;
+        private StateMachine<GameStates> _stateMachine;
         public enum GameStates
         {
             None,
@@ -17,20 +19,22 @@ namespace RunnerGame.Infrastructure
             GameOver,
             Restart
         }
-        public Game(LifetimeScope scope, ScoreManager scoreManager)
+
+        private ScoreManager scoreManager;
+        public Game(ScoreManager scoreManager)
         {
+            this.scoreManager = scoreManager;
+
             Application.targetFrameRate = 60;
-            var sceneLoader = new SceneLoader(scope);
             _stateMachine = new();
             _stateMachine.InitStates(new Dictionary<GameStates,IGameState>()
             {
-                [GameStates.MainMenu] = new LoadSceneState(sceneLoader, Scenes.MAIN_MENU),
-                [GameStates.LoadLevel] = new LoadLevelState(sceneLoader),
+                [GameStates.MainMenu] = new LoadSceneState( Scenes.MAIN_MENU),
+                [GameStates.LoadLevel] = new LoadLevelState(),
                 // [GameStates.LoadLevel] = new LoadLevelState(sceneLoader, Scenes.DEFAULT_LEVEL),
-                [GameStates.GameOver] = new LoadSceneState(sceneLoader, Scenes.GAME_OVER_SCENE),
+                [GameStates.GameOver] = new LoadSceneState( Scenes.GAME_OVER_SCENE),
                 [GameStates.Restart] = new RestartState(this, scoreManager)
             });
-            _stateMachine.SetState(GameStates.MainMenu);
         }
         public void SetState(GameStates newState) => _stateMachine.SetState(newState);
     }

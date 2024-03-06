@@ -7,8 +7,12 @@ using VContainer.Unity;
 
 namespace Shared
 {
-    public class SceneLoader : ISceneLoader
+    public class SceneLoader : ISceneLoader, IStartable
     {
+        public SceneLoader()
+        {
+            Debug.Log("Hello");
+        }
         public SceneLoader(LifetimeScope currentScope) => _currentScope = currentScope;
         private readonly LifetimeScope _currentScope;
         async UniTask LoadSceneAsync(string sceneName)
@@ -19,5 +23,9 @@ namespace Shared
             }
         }
         public void LoadScene(string sceneName, Action onComplete=null) => LoadSceneAsync(sceneName);
+        public void Start()
+        {
+            Debug.Log("Hello");
+        }
     }
 }

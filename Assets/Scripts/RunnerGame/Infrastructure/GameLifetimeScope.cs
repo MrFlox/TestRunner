@@ -10,19 +10,16 @@ namespace RunnerGame.Infrastructure
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private Swiper swiper;
-        private Game _game;
 
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.Register<SceneLoader>(Lifetime.Singleton).As<ISceneLoader>();
             builder.RegisterComponent(swiper).As<ISwiper>();
-            var scoreManager = new ScoreManager();
-            builder.RegisterInstance(scoreManager);
-            _game = new Game(this, scoreManager);
-            builder.RegisterInstance(_game);
-            DontDestroyOnLoad(gameObject);
+            builder.Register<ScoreManager>(Lifetime.Singleton);
+            builder.Register<Game>(Lifetime.Singleton);
             builder.RegisterEntryPoint<InputController>().As<IInputController>();
+
+            DontDestroyOnLoad(gameObject);
         }
-        [Button]
-        public void ChangeState(Game.GameStates state) => _game.SetState(state);
     }
 }
