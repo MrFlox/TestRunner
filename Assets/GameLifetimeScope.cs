@@ -15,5 +15,5 @@ public class GameLifetimeScope : LifetimeScope
         DontDestroyOnLoad(gameObject);
     }
     [Button]
-    public void ChangeState(Game.GameStates state) => _game.StateMachine.SetState(state);
+    public void ChangeState(Game.GameStates state) => _game.SetState(state);
 }

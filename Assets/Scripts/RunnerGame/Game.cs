@@ -7,7 +7,7 @@ namespace RunnerGame
 {
     public class Game
     {
-        public readonly StateMachine<GameStates> StateMachine;
+        private readonly StateMachine<GameStates> StateMachine;
         public enum GameStates
         {
             None,
@@ -29,5 +29,7 @@ namespace RunnerGame
             });
             StateMachine.SetState(GameStates.MainMenu);
         }
+
+        public void SetState(GameStates newState) => StateMachine.SetState(newState);
     }
 }

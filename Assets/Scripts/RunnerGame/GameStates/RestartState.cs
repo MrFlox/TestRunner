@@ -14,7 +14,7 @@ namespace RunnerGame.GameStates
         public void EnterState()
         {
             _scoreManager.Clear();
-            _game.StateMachine.SetState(Game.GameStates.LoadLevel);
+            _game.SetState(Game.GameStates.LoadLevel);
         }
     }
 }

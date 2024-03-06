@@ -112,6 +112,6 @@ namespace RunnerGame.Player
             pos.y = 1.2f;
             transform.position = pos;
         }
-        public void GameOver() => _game.StateMachine.SetState(Game.GameStates.GameOver);
+        public void GameOver() => _game.SetState(Game.GameStates.GameOver);
     }
 }

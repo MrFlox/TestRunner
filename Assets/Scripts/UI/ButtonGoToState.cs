@@ -13,6 +13,6 @@ namespace UI
         [Inject]
         public void Construct(Game game) => _game = game;
         private void Awake() => buttonPlay.onClick.AddListener(OnClickHandler);
-        private void OnClickHandler() => _game.StateMachine.SetState(nextState);
+        private void OnClickHandler() => _game.SetState(nextState);
     }
 }
