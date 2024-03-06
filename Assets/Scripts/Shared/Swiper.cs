@@ -15,6 +15,12 @@ namespace Shared
         private Vector2 _swipeEndPosition;
 
         public event Action<SwipeDirection> OnSwipe;
+        public void Subscribe(Action<SwipeDirection> onSwipe) => OnSwipe += onSwipe;
+        public void Unsubscribe(Action<SwipeDirection> onSwipe) => OnSwipe -= onSwipe;
+        private void Awake() => Disable();
+
+        public void Disable() => gameObject.SetActive(false);
+        public void Enable() => gameObject.SetActive(true);
 
         public void OnPointerDown(PointerEventData eventData) =>
             _swipeStartPosition = eventData.position;

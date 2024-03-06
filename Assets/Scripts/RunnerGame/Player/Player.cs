@@ -10,8 +10,6 @@ namespace RunnerGame.Player
     public class Player : MonoBehaviour
     {
         const float SideAnimationTime = 0.05f;
-
-        [SerializeField] Swiper _swiper;
         [SerializeField] protected float speed = 15;
         [SerializeField] float jumpPower = 7;
         [SerializeField] Transform bottomCheck;
@@ -23,9 +21,10 @@ namespace RunnerGame.Player
         private bool _isFlyMode;
         private Game _game;
         private readonly Vector3 jumpVector = new(0, 1f, .2f);
-
-        [Inject] private void Construct(ScoreManager scoreManager, Game game)
+        private ISwiper _swiper;
+        [Inject] private void Construct(ScoreManager scoreManager, Game game, ISwiper swiper)
         {
+            _swiper = swiper;
             _scoreManager = scoreManager;
             _game = game;
         }
@@ -33,7 +32,8 @@ namespace RunnerGame.Player
         {
             Application.targetFrameRate = 60;
             _rigidbody = GetComponent<Rigidbody>();
-            _swiper.OnSwipe += OnSwipeHandler;
+            _swiper.Enable();
+            _swiper.Subscribe(OnSwipeHandler);
             movingVelocity = new(0, 0, speed);
         }
         private void OnSwipeHandler(SwipeDirection obj)
@@ -112,6 +112,11 @@ namespace RunnerGame.Player
             pos.y = 1.2f;
             transform.position = pos;
         }
-        public void GameOver() => _game.SetState(Game.GameStates.GameOver);
+        public void GameOver()
+        {
+            _swiper.Unsubscribe(OnSwipeHandler);
+            _swiper.Disable();
+            _game.SetState(Game.GameStates.GameOver);
+        }
     }
 }

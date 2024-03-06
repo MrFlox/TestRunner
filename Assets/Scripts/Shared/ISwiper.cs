@@ -4,6 +4,10 @@ namespace Shared
 {
     public interface ISwiper
     {
-        event Action<SwipeDirection> OnSwipe;
+
+        void Subscribe(Action<SwipeDirection> onSwipe);
+        void Unsubscribe(Action<SwipeDirection> onSwipe);
+        void Disable();
+        void Enable();
     }
 }

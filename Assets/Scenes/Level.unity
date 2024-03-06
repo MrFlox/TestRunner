@@ -1465,25 +1465,10 @@ PrefabInstance:
       propertyPath: _swiper
       value: 
       objectReference: {fileID: 208905042}
-    - target: {fileID: 81927437996001270, guid: ae9666eb05a204f4cb4ea833a028edd2,
-        type: 3}
-      propertyPath: scoreManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2323355000166552819, guid: ae9666eb05a204f4cb4ea833a028edd2,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3954060213622321534, guid: ae9666eb05a204f4cb4ea833a028edd2,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3954060213622321534, guid: ae9666eb05a204f4cb4ea833a028edd2,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4991928821176659958, guid: ae9666eb05a204f4cb4ea833a028edd2,
         type: 3}
@@ -1535,11 +1520,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8907700372079040052, guid: ae9666eb05a204f4cb4ea833a028edd2,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 17035ce94b651e04db3ea362cfbb39ef, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
