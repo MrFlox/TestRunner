@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RunnerGame.Player.Effects;
 using RunnerGame.Segments;
@@ -6,15 +7,15 @@ using Random = UnityEngine.Random;
 
 namespace RunnerGame.LevelItems
 {
+    [RequireComponent(typeof(ICoinView))]
     public class Coin : MonoBehaviour
     {
         private const string Player = "Player";
         [SerializeField] private List<CoinEffectSo> coinTypes;
-        [SerializeField] private Material defaulCoinMaterial;
-        [SerializeField] private CoinEffectSo effect;
-        [SerializeField] private MeshRenderer mesh;
+        private CoinEffectSo effect;
         private Segment _segment;
-
+        private ICoinView _view;
+        private void Awake() => _view = GetComponent<ICoinView>();
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag(Player)) return;
@@ -32,11 +33,11 @@ namespace RunnerGame.LevelItems
             if (Random.value < .1f)
             {
                 effect = randomType;
-                mesh.material = effect.Material;
+                _view.SetCoinStyle(effect);
                 return;
             }
             effect = null;
-            mesh.material = defaulCoinMaterial;
+            _view.SetDefaultCoinStyle();
         }
     }
 }
