@@ -11,7 +11,7 @@ namespace RunnerGame.LevelItems
         {
             if (!other.CompareTag("Player")) return;
             other.transform.parent.TryGetComponent<Player.Player>(out var player);
-            if (player != null) player.GameOver();
+            if (player != null) player.Hit();
         }
     }
 }

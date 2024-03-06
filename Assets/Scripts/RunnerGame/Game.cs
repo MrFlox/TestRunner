@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using RunnerGame.GameStates;
 using Shared;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace RunnerGame
@@ -18,6 +19,7 @@ namespace RunnerGame
         }
         public Game(LifetimeScope scope, ScoreManager scoreManager)
         {
+            Application.targetFrameRate = 60;
             var sceneLoader = new SceneLoader(scope);
             StateMachine = new();
             StateMachine.InitStates(new Dictionary<GameStates,IGameState>()

@@ -11,11 +11,11 @@ namespace RunnerGame.Player.Effects
     {
         public Material Material;
         [SerializeField] private float delay = 10;
-        protected Player _player;
-        public void ApplyEffect(Player player)
+        protected PlayerMovement _playerMovement;
+        public void ApplyEffect(PlayerMovement player)
         {
-            _player = player;
-            _player.StartCoroutine(EnableEffect());
+            _playerMovement = player.GetComponent<PlayerMovement>();
+            _playerMovement.StartCoroutine(EnableEffect());
         }
         private IEnumerator EnableEffect()
         {

@@ -62,9 +62,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4991928821176659958}
-  - component: {fileID: 81927437996001270}
   - component: {fileID: 3954060213622321534}
   - component: {fileID: 921132094486479130}
+  - component: {fileID: 81927437996001270}
+  - component: {fileID: 4296212133990616817}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -90,26 +91,6 @@ Transform:
   - {fileID: 7011626803566602371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &81927437996001270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323355000166552819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d04ae3aaf1598143a987212e5490fee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _swiper: {fileID: 0}
-  speed: 10
-  jumpPower: 9
-  bottomCheck: {fileID: 5826832178194077486}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  sideMove: 3
 --- !u!54 &3954060213622321534
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -160,6 +141,38 @@ CapsuleCollider:
   m_Height: 2.9029477
   m_Direction: 1
   m_Center: {x: 0, y: 0.95147383, z: 0}
+--- !u!114 &81927437996001270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323355000166552819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d04ae3aaf1598143a987212e5490fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4296212133990616817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323355000166552819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3596ebd486ce43eab3caabd94ce151be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SideAnimationTime: 0.05
+  speed: 10
+  jumpPower: 9
+  bottomCheck: {fileID: 5826832178194077486}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  sideMove: 3
 --- !u!1 &4046152816542841271
 GameObject:
   m_ObjectHideFlags: 0
