@@ -9,7 +9,7 @@ namespace RunnerGame.Player.Effects
      */
     public class CoinEffectSo : ScriptableObject, IEffect
     {
-        public Material Material;
+        [SerializeField] private Material material;
         [SerializeField] private float delay = 10;
         protected PlayerMovement _playerMovement;
         public void ApplyEffect(PlayerMovement player)
@@ -17,6 +17,7 @@ namespace RunnerGame.Player.Effects
             _playerMovement = player.GetComponent<PlayerMovement>();
             _playerMovement.StartCoroutine(EnableEffect());
         }
+        public Material Material => material;
         private IEnumerator EnableEffect()
         {
             EnableTheEffect();
