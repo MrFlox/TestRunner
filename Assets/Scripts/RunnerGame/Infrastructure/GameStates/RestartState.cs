@@ -1,6 +1,4 @@
-﻿using VContainer;
-
-namespace RunnerGame.GameStates
+﻿namespace RunnerGame.Infrastructure.GameStates
 {
     public class RestartState : IGameState
     {

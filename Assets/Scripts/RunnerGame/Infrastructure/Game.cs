@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using RunnerGame.GameStates;
+using RunnerGame.Infrastructure.GameStates;
 using Shared;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace RunnerGame
+namespace RunnerGame.Infrastructure
 {
     public class Game
     {
-        private readonly StateMachine<GameStates> StateMachine;
+        private readonly StateMachine<GameStates> _stateMachine;
         public enum GameStates
         {
             None,
@@ -21,17 +21,17 @@ namespace RunnerGame
         {
             Application.targetFrameRate = 60;
             var sceneLoader = new SceneLoader(scope);
-            StateMachine = new();
-            StateMachine.InitStates(new Dictionary<GameStates,IGameState>()
+            _stateMachine = new();
+            _stateMachine.InitStates(new Dictionary<GameStates,IGameState>()
             {
                 [GameStates.MainMenu] = new LoadSceneState(sceneLoader, Scenes.MAIN_MENU),
-                [GameStates.LoadLevel] = new LoadSceneState(sceneLoader, Scenes.LEVEL_SCENE),
+                [GameStates.LoadLevel] = new LoadLevelState(sceneLoader),
+                // [GameStates.LoadLevel] = new LoadLevelState(sceneLoader, Scenes.DEFAULT_LEVEL),
                 [GameStates.GameOver] = new LoadSceneState(sceneLoader, Scenes.GAME_OVER_SCENE),
                 [GameStates.Restart] = new RestartState(this, scoreManager)
             });
-            StateMachine.SetState(GameStates.MainMenu);
+            _stateMachine.SetState(GameStates.MainMenu);
         }
-
-        public void SetState(GameStates newState) => StateMachine.SetState(newState);
+        public void SetState(GameStates newState) => _stateMachine.SetState(newState);
     }
 }

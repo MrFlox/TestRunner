@@ -1,4 +1,4 @@
-namespace RunnerGame.GameStates
+namespace RunnerGame.Infrastructure.GameStates
 {
     public interface IGameState
     {

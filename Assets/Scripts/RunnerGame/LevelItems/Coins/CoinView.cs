@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace RunnerGame.LevelItems
+namespace RunnerGame.LevelItems.Coins
 {
     public class CoinView : MonoBehaviour, ICoinView
     {

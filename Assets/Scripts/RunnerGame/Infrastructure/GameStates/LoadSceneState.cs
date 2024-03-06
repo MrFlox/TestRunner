@@ -1,16 +1,16 @@
 ﻿using Shared;
 
-namespace RunnerGame.GameStates
+namespace RunnerGame.Infrastructure.GameStates
 {
     public class LoadSceneState : IGameState
     {
         private readonly SceneLoader _sceneLoader;
-        private readonly string _sceneName;
+        protected string _sceneName;
         public LoadSceneState(SceneLoader sceneLoader, string sceneName)
         {
             _sceneLoader = sceneLoader;
             _sceneName = sceneName;
         }
-        public void EnterState() => _sceneLoader.LoadScene(_sceneName);
+        public virtual void EnterState() => _sceneLoader.LoadScene(_sceneName);
     }
 }

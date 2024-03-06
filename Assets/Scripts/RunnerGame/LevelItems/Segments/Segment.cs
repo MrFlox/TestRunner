@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using RunnerGame.LevelItems;
+using RunnerGame.LevelItems.Coins;
 using TriInspector;
 using UnityEngine;
 
-namespace RunnerGame.Segments
+namespace RunnerGame.LevelItems.Segments
 {
     public class Segment : MonoBehaviour
     {

@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
+using RunnerGame.LevelItems.Segments;
 using RunnerGame.Player.Effects;
-using RunnerGame.Segments;
 using UnityEngine;
 
-namespace RunnerGame.LevelItems
+namespace RunnerGame.LevelItems.Coins
 {
     [RequireComponent(typeof(ICoinView))]
     public class Coin : MonoBehaviour

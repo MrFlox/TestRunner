@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using RunnerGame.GameStates;
+using RunnerGame.Infrastructure.GameStates;
 using TriInspector;
 
 namespace Shared

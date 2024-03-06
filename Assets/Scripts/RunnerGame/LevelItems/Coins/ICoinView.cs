@@ -1,6 +1,6 @@
 ﻿using RunnerGame.Player.Effects;
 
-namespace RunnerGame.LevelItems
+namespace RunnerGame.LevelItems.Coins
 {
     public interface ICoinView
     {
