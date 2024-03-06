@@ -7,7 +7,7 @@ namespace RunnerGame.Player.Effects
     /**
      * Base Coin Effect. Other must derive from it.
      */
-    public class CoinEffectSo : ScriptableObject
+    public class CoinEffectSo : ScriptableObject, IEffect
     {
         public Material Material;
         [SerializeField] private float delay = 10;

@@ -1,13 +1,9 @@
-using System;
 using RunnerGame.Player.Effects;
-using Shared;
 using UnityEngine;
 using VContainer;
 
 namespace RunnerGame.Player
 {
-
-
     [RequireComponent(typeof(Rigidbody))]
     public class Player : MonoBehaviour
     {
@@ -22,7 +18,7 @@ namespace RunnerGame.Player
         }
         private void Awake() => _movement = GetComponent<PlayerMovement>();
         public void CollectCoin() => _scoreManager.Add();
-        public void ApplyEffect(CoinEffectSo effect) => effect?.ApplyEffect(_movement);
+        public void ApplyEffect(IEffect effect) => effect?.ApplyEffect(_movement);
         public void Hit()
         {
             _movement.Release();

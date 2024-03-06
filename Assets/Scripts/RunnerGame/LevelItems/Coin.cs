@@ -20,12 +20,10 @@ namespace RunnerGame.LevelItems
             if (!other.CompareTag(Player)) return;
             _segment.RemoveCoin(this);
             other.transform.parent.TryGetComponent<Player.Player>(out var player);
-            if (player != null)
-            {
-                if(effect!=null)
-                    player.ApplyEffect(effect);
-                player.CollectCoin();
-            }
+            if (player == null) return;
+            if (effect != null)
+                player.ApplyEffect(effect);
+            player.CollectCoin();
         }
         public void SetSegment(Segment segment) => _segment = segment;
         public void SetRandomType()
