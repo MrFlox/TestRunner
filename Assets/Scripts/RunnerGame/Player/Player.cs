@@ -41,10 +41,10 @@ namespace RunnerGame.Player
             switch (movement)
             {
                 case SwipeDirection.Left:
-                    MoveLeft();
+                    Move(-sideMove);
                     break;
                 case SwipeDirection.Right:
-                    MoveRight();
+                    Move(sideMove);
                     break;
                 case SwipeDirection.Top:
                     if (IsGrounded)
@@ -65,8 +65,6 @@ namespace RunnerGame.Player
         private bool IsGrounded => Physics.CheckSphere(bottomCheck.position, .1f, groundLayer);
         private void Jump() =>
             _rigidbody.AddForce(jumpVector * jumpPower, ForceMode.Impulse);
-        private void MoveRight() => Move(sideMove);
-        private void MoveLeft() => Move(-sideMove);
         private void Move(float sideOffset)
         {
             var position = transform.position;

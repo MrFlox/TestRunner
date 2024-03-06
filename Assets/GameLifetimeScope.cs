@@ -19,7 +19,6 @@ public class GameLifetimeScope : LifetimeScope
         _game = new Game(this, scoreManager);
         builder.RegisterInstance(_game);
         DontDestroyOnLoad(gameObject);
-        // builder.Register<InputController>(Lifetime.Singleton).As<IInputController>();
         builder.RegisterEntryPoint<InputController>().As<IInputController>();
     }
     [Button]
