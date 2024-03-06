@@ -1,4 +1,5 @@
 using RunnerGame;
+using RunnerGame.Player;
 using Shared;
 using TriInspector;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class GameLifetimeScope : LifetimeScope
         _game = new Game(this, scoreManager);
         builder.RegisterInstance(_game);
         DontDestroyOnLoad(gameObject);
+        // builder.Register<InputController>(Lifetime.Singleton).As<IInputController>();
+        builder.RegisterEntryPoint<InputController>().As<IInputController>();
     }
     [Button]
     public void ChangeState(Game.GameStates state) => _game.SetState(state);

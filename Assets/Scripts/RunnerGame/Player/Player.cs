@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using RunnerGame.Player.Effects;
 using Shared;
@@ -21,10 +22,10 @@ namespace RunnerGame.Player
         private bool _isFlyMode;
         private Game _game;
         private readonly Vector3 jumpVector = new(0, 1f, .2f);
-        private ISwiper _swiper;
-        [Inject] private void Construct(ScoreManager scoreManager, Game game, ISwiper swiper)
+        private IInputController _inputController;
+        [Inject] private void Construct(ScoreManager scoreManager, Game game, IInputController inputController)
         {
-            _swiper = swiper;
+            _inputController = inputController;
             _scoreManager = scoreManager;
             _game = game;
         }
@@ -32,13 +33,12 @@ namespace RunnerGame.Player
         {
             Application.targetFrameRate = 60;
             _rigidbody = GetComponent<Rigidbody>();
-            _swiper.Enable();
-            _swiper.Subscribe(OnSwipeHandler);
+            _inputController.Start(OnInputMovementHandler);
             movingVelocity = new(0, 0, speed);
         }
-        private void OnSwipeHandler(SwipeDirection obj)
+        private void OnInputMovementHandler(SwipeDirection movement)
         {
-            switch (obj)
+            switch (movement)
             {
                 case SwipeDirection.Left:
                     MoveLeft();
@@ -46,23 +46,17 @@ namespace RunnerGame.Player
                 case SwipeDirection.Right:
                     MoveRight();
                     break;
+                case SwipeDirection.Top:
+                    if (IsGrounded)
+                        Jump();
+                    break;
                 case SwipeDirection.Bottom:
                     break;
-                case SwipeDirection.Top:
-                    Jump();
-                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(movement), movement, null);
             }
         }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-                MoveLeft();
-            if (Input.GetKeyDown(KeyCode.D))
-                MoveRight();
-            if (Input.GetKeyDown(KeyCode.Space))
-                if (IsGrounded)
-                    Jump();
-        }
+
         private void FixedUpdate()
         {
             if (IsGrounded)
@@ -114,8 +108,7 @@ namespace RunnerGame.Player
         }
         public void GameOver()
         {
-            _swiper.Unsubscribe(OnSwipeHandler);
-            _swiper.Disable();
+            _inputController.Stop(OnInputMovementHandler);
             _game.SetState(Game.GameStates.GameOver);
         }
     }
