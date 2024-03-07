@@ -5,7 +5,7 @@ using TriInspector;
 
 namespace Shared
 {
-    public class StateMachine<TStatesEnum> : IStateManager<TStatesEnum> where TStatesEnum: Enum
+    public class StateMachine<TStatesEnum> : IStateMachine<TStatesEnum> where TStatesEnum: Enum
     {
         public event Action<TStatesEnum> OnChangeState;
         Dictionary<TStatesEnum, IGameState> _states;

@@ -8,30 +8,22 @@ namespace RunnerGame.Infrastructure
 {
     public class Game : IStartable, IGame
     {
-        private StateMachine<GameStates> _stateMachine;
-        public enum GameStates
-        {
-            None,
-            MainMenu,
-            LoadLevel,
-            GameOver,
-            Restart
-        }
+        private IStateMachine<GameStates.GameStates> _stateMachine;
+        private readonly GameStateFactory _stateFactory;
 
-        public Game(ScoreManager scoreManager, ISceneLoader sceneLoader)
+        public Game(IGameStateFactory stateFactory, IStateMachine<GameStates.GameStates> stateMachine)
         {
             Application.targetFrameRate = 60;
-            _stateMachine = new();
-            _stateMachine.InitStates(new Dictionary<GameStates,IGameState>()
+            _stateMachine = stateMachine;
+            _stateMachine.InitStates(new Dictionary<GameStates.GameStates, IGameState>()
             {
-                [GameStates.MainMenu] = new LoadSceneState(sceneLoader, Scenes.MAIN_MENU),
-                [GameStates.LoadLevel] = new LoadLevelState(sceneLoader),
-                // [GameStates.LoadLevel] = new LoadLevelState(sceneLoader, Scenes.DEFAULT_LEVEL),
-                [GameStates.GameOver] = new LoadSceneState(sceneLoader, Scenes.GAME_OVER_SCENE),
-                [GameStates.Restart] = new RestartState(this, scoreManager)
+                [GameStates.GameStates.MainMenu] = stateFactory.NewLoadScene(Scenes.MAIN_MENU),
+                [GameStates.GameStates.LoadLevel] = stateFactory.NewLoadLevel(),
+                [GameStates.GameStates.GameOver] = stateFactory.NewLoadScene(Scenes.GAME_OVER_SCENE),
+                [GameStates.GameStates.Restart] = stateFactory.CreateRestart()
             });
         }
-        public void SetState(GameStates newState) => _stateMachine.SetState(newState);
-        void IStartable.Start() => SetState(GameStates.MainMenu);
+        public void SetState(GameStates.GameStates newState) => _stateMachine.SetState(newState);
+        void IStartable.Start() => SetState(GameStates.GameStates.MainMenu);
     }
 }

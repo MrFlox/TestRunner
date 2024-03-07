@@ -1,4 +1,5 @@
 using RunnerGame.Infrastructure;
+using RunnerGame.Infrastructure.GameStates;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -8,7 +9,7 @@ namespace UI
     public class ButtonGoToState : MonoBehaviour
     {
         [SerializeField] private Button buttonPlay;
-        [SerializeField] private Game.GameStates nextState;
+        [SerializeField] private GameStates nextState;
         private IGame _game;
         [Inject]
         public void Construct(IGame game) => _game = game;

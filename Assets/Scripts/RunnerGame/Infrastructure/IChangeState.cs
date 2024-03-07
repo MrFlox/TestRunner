@@ -1,6 +1,6 @@
 ﻿namespace RunnerGame.Infrastructure
 {
-    public interface IGame
+    public interface IChangeState
     {
         void SetState(GameStates.GameStates newState);
     }

@@ -2,7 +2,7 @@ using System;
 
 namespace RunnerGame
 {
-    public class ScoreManager
+    public class ScoreManager : IScoreManager
     {
         private int _score;
         public event Action<int> OnChangeScore;

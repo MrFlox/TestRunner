@@ -1,4 +1,5 @@
 using RunnerGame.Infrastructure;
+using RunnerGame.Infrastructure.GameStates;
 using RunnerGame.Player.Effects;
 using UnityEngine;
 using VContainer;
@@ -8,11 +9,11 @@ namespace RunnerGame.Player
     [RequireComponent(typeof(Rigidbody))]
     public class Player : MonoBehaviour
     {
-        private ScoreManager _scoreManager;
+        private IScoreManager _scoreManager;
         private IGame _game;
         private IInputController _inputController;
         private PlayerMovement _movement;
-        [Inject] private void Construct(ScoreManager scoreManager, IGame game)
+        [Inject] private void Construct(IScoreManager scoreManager, IGame game)
         {
             _scoreManager = scoreManager;
             _game = game;
@@ -23,7 +24,7 @@ namespace RunnerGame.Player
         public void Hit()
         {
             _movement.Release();
-            _game.SetState(Game.GameStates.GameOver);
+            _game.SetState(GameStates.GameOver);
         }
     }
 }

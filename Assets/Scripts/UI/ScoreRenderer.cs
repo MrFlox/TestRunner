@@ -8,8 +8,8 @@ namespace UI
     public class ScoreRenderer : MonoBehaviour
     {
         [SerializeField] private TMP_Text _text;
-        private ScoreManager _scoreManager;
-        [Inject] private void Construct(ScoreManager scoreManager) => _scoreManager = scoreManager;
+        private IScoreManager _scoreManager;
+        [Inject] private void Construct(IScoreManager scoreManager) => _scoreManager = scoreManager;
         private void Awake()
         {
             _scoreManager.OnChangeScore += OnChangeScoreHandler;
