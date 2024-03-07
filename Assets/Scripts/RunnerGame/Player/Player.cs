@@ -9,10 +9,10 @@ namespace RunnerGame.Player
     public class Player : MonoBehaviour
     {
         private ScoreManager _scoreManager;
-        private Game _game;
+        private IGame _game;
         private IInputController _inputController;
         private PlayerMovement _movement;
-        [Inject] private void Construct(ScoreManager scoreManager, Game game)
+        [Inject] private void Construct(ScoreManager scoreManager, IGame game)
         {
             _scoreManager = scoreManager;
             _game = game;

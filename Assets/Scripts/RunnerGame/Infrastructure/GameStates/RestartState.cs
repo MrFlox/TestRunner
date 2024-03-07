@@ -3,8 +3,8 @@
     public class RestartState : IGameState
     {
         private ScoreManager _scoreManager;
-        private readonly Game _game;
-        public RestartState(Game game, ScoreManager scoreManager)
+        private readonly IGame _game;
+        public RestartState(IGame game, ScoreManager scoreManager)
         {
             _game = game;
             _scoreManager = scoreManager;

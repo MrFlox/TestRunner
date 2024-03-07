@@ -1,4 +1,3 @@
-using RunnerGame;
 using RunnerGame.Infrastructure;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +9,9 @@ namespace UI
     {
         [SerializeField] private Button buttonPlay;
         [SerializeField] private Game.GameStates nextState;
-        private Game _game;
+        private IGame _game;
         [Inject]
-        public void Construct(Game game) => _game = game;
+        public void Construct(IGame game) => _game = game;
         private void Awake() => buttonPlay.onClick.AddListener(OnClickHandler);
         private void OnClickHandler() => _game.SetState(nextState);
     }
