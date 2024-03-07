@@ -7,4 +7,4 @@ Unity version 2023.2.8f1
 
 
 # Описание архитектуры проекта 
-[https://docs.google.com/presentation/d/1n2CVAcPDEmSvKo9RpZD5AiSyMZkJnMJceDzC6r8kEnA/edit?usp=sharing](https://bit.ly/3wLFLPO)https://bit.ly/3wLFLPO
+[https://docs.google.com/presentation/d/1n2CVAcPDEmSvKo9RpZD5AiSyMZkJnMJceDzC6r8kEnA/edit?usp=sharing](https://bit.ly/3wLFLPO)
