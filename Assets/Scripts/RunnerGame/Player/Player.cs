@@ -6,7 +6,7 @@ using VContainer;
 
 namespace RunnerGame.Player
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody), typeof(PlayerMovement))]
     public class Player : MonoBehaviour
     {
         private IScoreManager _scoreManager;
