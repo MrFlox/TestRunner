@@ -11,7 +11,7 @@ namespace RunnerGame.Infrastructure
     public class Game : IStartable, IGame
     {
         private IStateMachine<GameStates> _stateMachine;
-        private readonly GameStateFactory _stateFactory;
+        private readonly IGameStateFactory _stateFactory;
 
         public Game(IGameStateFactory stateFactory, IStateMachine<GameStates> stateMachine)
         {
