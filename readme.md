@@ -3,7 +3,7 @@ Unity version 2023.2.8f1
 **Main scene - BootStrap**
 
 # Android build 
-[AndroidBuild/runner.apk](https://github.com/MrFlox/TestRunner/blob/main/AndroidBuild/runner.apk)runner.apk
+[AndroidBuild/runner.apk](https://github.com/MrFlox/TestRunner/blob/main/AndroidBuild/runner.apk)
 
 
 # Описание архитектуры проекта 
