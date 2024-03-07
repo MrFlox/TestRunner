@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shared
+namespace RunnerGame.Shared
 {
     public class FollowPlayer : MonoBehaviour
     {

@@ -2,7 +2,6 @@
 using RunnerGame.Infrastructure.Services;
 using RunnerGame.Infrastructure.States;
 using RunnerGame.Services;
-using Shared;
 using UnityEngine;
 using VContainer.Unity;
 
@@ -10,14 +9,14 @@ namespace RunnerGame.Infrastructure
 {
     public class Game : IStartable, IGame
     {
-        private IStateMachine<GameStates> _stateMachine;
+        private readonly IStateMachine<GameStates> _stateMachine;
         private readonly IGameStateFactory _stateFactory;
-
+        void IStartable.Start() => SetState(GameStates.MainMenu);
         public Game(IGameStateFactory stateFactory, IStateMachine<GameStates> stateMachine)
         {
             Application.targetFrameRate = 60;
             _stateMachine = stateMachine;
-            _stateMachine.InitStates(new Dictionary<GameStates, IGameState>()
+            _stateMachine.InitStates(new Dictionary<GameStates, IGameState>
             {
                 [GameStates.MainMenu] = stateFactory.NewLoadScene(Scenes.MAIN_MENU),
                 [GameStates.LoadLevel] = stateFactory.NewLoadLevel(),
@@ -26,6 +25,5 @@ namespace RunnerGame.Infrastructure
             });
         }
         public void SetState(GameStates newState) => _stateMachine.SetState(newState);
-        void IStartable.Start() => SetState(GameStates.MainMenu);
     }
 }

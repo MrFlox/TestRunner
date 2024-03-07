@@ -1,7 +1,5 @@
 using RunnerGame.Infrastructure.Services;
-using RunnerGame.Player;
 using RunnerGame.Services;
-using Shared;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
