@@ -1,6 +1,6 @@
-﻿using Shared;
+﻿using RunnerGame.Services;
 
-namespace RunnerGame.Infrastructure.GameStates
+namespace RunnerGame.Infrastructure.States
 {
     public class RestartState : IGameState
     {

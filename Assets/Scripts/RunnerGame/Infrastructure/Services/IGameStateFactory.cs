@@ -1,4 +1,6 @@
-﻿namespace RunnerGame.Infrastructure.GameStates
+﻿using RunnerGame.Infrastructure.States;
+
+namespace RunnerGame.Infrastructure.Services
 {
     public interface IGameStateFactory
     {

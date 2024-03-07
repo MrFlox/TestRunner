@@ -1,6 +1,6 @@
 using System;
 
-namespace RunnerGame
+namespace RunnerGame.Services
 {
     public class ScoreManager : IScoreManager
     {

@@ -1,6 +1,7 @@
-﻿using Shared;
+﻿using RunnerGame.Infrastructure.States;
+using RunnerGame.Services;
 
-namespace RunnerGame.Infrastructure.GameStates
+namespace RunnerGame.Infrastructure.Services
 {
     public class GameStateFactory : IGameStateFactory
     {

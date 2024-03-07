@@ -1,4 +1,4 @@
-﻿namespace RunnerGame.Infrastructure.GameStates
+﻿namespace RunnerGame.Infrastructure
 {
     public enum GameStates
     {

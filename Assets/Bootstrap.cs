@@ -1,5 +1,4 @@
 using RunnerGame.Infrastructure;
-using RunnerGame.Infrastructure.GameStates;
 using UnityEngine;
 using VContainer;
 using static RunnerGame.Infrastructure.Game;

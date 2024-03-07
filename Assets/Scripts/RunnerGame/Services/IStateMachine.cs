@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using RunnerGame.Infrastructure.GameStates;
+using RunnerGame.Infrastructure.States;
 
-namespace Shared
+namespace RunnerGame.Services
 {
     public interface IStateMachine<T>
     {

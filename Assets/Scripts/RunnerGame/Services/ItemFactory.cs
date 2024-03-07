@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace RunnerGame
+namespace RunnerGame.Services
 {
     public class ItemFactory<T> : IAbstractFactory<T> where T: MonoBehaviour
     {

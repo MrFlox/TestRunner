@@ -1,8 +1,6 @@
 ﻿using System;
-using Shared;
-using VContainer.Unity;
 
-namespace RunnerGame.Player
+namespace RunnerGame.Services
 {
     public interface IInputController
     {

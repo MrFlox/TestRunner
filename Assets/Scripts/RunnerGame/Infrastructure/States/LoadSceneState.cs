@@ -1,7 +1,6 @@
-﻿using Shared;
-using VContainer;
+﻿using RunnerGame.Services;
 
-namespace RunnerGame.Infrastructure.GameStates
+namespace RunnerGame.Infrastructure.States
 {
     public class LoadSceneState : IGameState
     {

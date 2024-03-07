@@ -1,7 +1,7 @@
-﻿using Shared;
+﻿using RunnerGame.Services;
 using UnityEngine;
 
-namespace RunnerGame.Infrastructure.GameStates
+namespace RunnerGame.Infrastructure.States
 {
     public class LoadLevelState : LoadSceneState
     {

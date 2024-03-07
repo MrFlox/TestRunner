@@ -1,9 +1,8 @@
 ﻿using System;
-using Shared;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace RunnerGame.Player
+namespace RunnerGame.Services
 {
     public class InputController : IInputController, ITickable
     {

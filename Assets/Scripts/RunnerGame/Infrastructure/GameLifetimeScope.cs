@@ -1,5 +1,6 @@
-using RunnerGame.Infrastructure.GameStates;
+using RunnerGame.Infrastructure.Services;
 using RunnerGame.Player;
+using RunnerGame.Services;
 using Shared;
 using UnityEngine;
 using VContainer;
@@ -12,7 +13,7 @@ namespace RunnerGame.Infrastructure
         [SerializeField] private Swiper swiper;
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<StateMachine<GameStates.GameStates>>(Lifetime.Singleton).As<IStateMachine<GameStates.GameStates>>();
+            builder.Register<StateMachine<GameStates>>(Lifetime.Singleton).As<IStateMachine<GameStates>>();
             builder.RegisterComponent(swiper).As<ISwiper>();
             builder.Register<SceneLoader>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<ScoreManager>(Lifetime.Singleton).AsImplementedInterfaces();

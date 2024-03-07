@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
-namespace Shared
+namespace RunnerGame.Services
 {
     public class SceneLoader : ISceneLoader
     {

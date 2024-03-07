@@ -1,4 +1,4 @@
-﻿namespace RunnerGame
+﻿namespace RunnerGame.Services
 {
     public interface IAbstractFactory<T>
     {

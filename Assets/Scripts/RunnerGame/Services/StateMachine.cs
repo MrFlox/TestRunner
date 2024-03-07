@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using RunnerGame.Infrastructure.GameStates;
+using RunnerGame.Infrastructure.States;
 using TriInspector;
 
-namespace Shared
+namespace RunnerGame.Services
 {
     public class StateMachine<TStatesEnum> : IStateMachine<TStatesEnum> where TStatesEnum: Enum
     {

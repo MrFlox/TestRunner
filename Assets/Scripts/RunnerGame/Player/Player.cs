@@ -1,6 +1,6 @@
 using RunnerGame.Infrastructure;
-using RunnerGame.Infrastructure.GameStates;
 using RunnerGame.Player.Effects;
+using RunnerGame.Services;
 using UnityEngine;
 using VContainer;
 

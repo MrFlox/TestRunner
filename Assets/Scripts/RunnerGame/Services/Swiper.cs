@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Shared
+namespace RunnerGame.Services
 {
     public enum SwipeDirection
     {
