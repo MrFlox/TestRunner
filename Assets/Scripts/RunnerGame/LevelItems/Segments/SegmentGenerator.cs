@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using RunnerGame.LevelItems.Coins;
 using RunnerGame.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
+using VContainer;
 
 namespace RunnerGame.LevelItems.Segments
 {
@@ -14,20 +16,32 @@ namespace RunnerGame.LevelItems.Segments
         [SerializeField] private int InitialSegmentCount = 5;
         [SerializeField] private float DistanceBetweenPlayerAndSegmentCenter = .1f;
         [SerializeField] private Transform hero;
-        [SerializeField] private List<Segment> segmentVariants;
+
+        [SerializeField] private List<Segment> segmentPrefabs;
+        [SerializeField] private List<Coin> coinPrefabs;
         [SerializeField] private List<Segment> segmentsOnStage = new();
-        [SerializeField] private Coin coinPrefab;
+
         private IAbstractFactory<Segment> _segmentFactory;
         private IAbstractFactory<Coin> _coinFactory;
+
+        [Inject] private void Construct(IAbstractFactory<Segment> segmentFactory, IAbstractFactory<Coin> coinFactory)
+        {
+            _segmentFactory = segmentFactory;
+            _coinFactory = coinFactory;
+        }
         private void Start()
         {
-            _segmentFactory = new ItemFactory<Segment>(segmentVariants);
-            _coinFactory = new ItemFactory<Coin>(new List<Coin>() { coinPrefab }, 200);
+            InitFactories();
             GenerateFistSegments();
+        }
+        private void InitFactories()
+        {
+            _segmentFactory.Init(segmentPrefabs);
+            _coinFactory.Init(coinPrefabs, 200);
         }
         private void GenerateFistSegments()
         {
-            for (int i = 0; i < InitialSegmentCount; i++)
+            for (var i = 0; i < InitialSegmentCount; i++)
                 GenerateNewSegment(false);
         }
         private void Update()
@@ -37,11 +51,11 @@ namespace RunnerGame.LevelItems.Segments
                 GenerateNewSegment();
         }
         private float DistanceFromCenterOfSegment() =>
-            segmentsOnStage[^(InitialSegmentCount-2)].transform.position.z - hero.position.z;
+            segmentsOnStage[^(InitialSegmentCount - 2)].transform.position.z - hero.position.z;
         private void GenerateNewSegment(bool deleteOld = true)
         {
             var newSegment = _segmentFactory.Create();
-            newSegment.ClearOldCointAndGenerateNew(_coinFactory);
+            newSegment.ClearOldCoinAndGenerateNew(_coinFactory);
             newSegment.SetPosition(GetLastSegmentPosition() + SegmentSize);
             segmentsOnStage.Add(newSegment);
             if (!deleteOld) return;
@@ -57,7 +71,7 @@ namespace RunnerGame.LevelItems.Segments
         {
             if (segmentsOnStage.Count == 0) return SegmentSize;
             var lastSegment = segmentsOnStage[^1];
-            return lastSegment.transform.position.z ;
+            return lastSegment.transform.position.z;
         }
     }
 }

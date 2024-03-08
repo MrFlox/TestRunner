@@ -6,9 +6,10 @@ namespace RunnerGame.Services
 {
     public class ItemFactory<T> : IAbstractFactory<T> where T: MonoBehaviour
     {
-        private readonly List<T> _variants;
-        private readonly ObjectPool<T> _pool;
-        public ItemFactory(List<T> variants, int defaultCapacity = 15)
+        private List<T> _variants;
+        private ObjectPool<T> _pool;
+
+        public void Init(List<T> variants, int defaultCapacity = 15)
         {
             _variants = variants;
             _pool = new ObjectPool<T>(CreateSegment,
@@ -17,6 +18,7 @@ namespace RunnerGame.Services
                 OnDestroySegment,
                 true, defaultCapacity, defaultCapacity * 10);
         }
+
         private T CreateSegment() =>
             Object.Instantiate(_variants[Random.Range(0, _variants.Count)]);
         private void OnTakeSegmentFromPool(T segment) => segment.gameObject.SetActive(true);

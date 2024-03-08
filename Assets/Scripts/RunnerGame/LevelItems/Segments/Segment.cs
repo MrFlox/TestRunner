@@ -8,7 +8,6 @@ namespace RunnerGame.LevelItems.Segments
 {
     public class Segment : MonoBehaviour
     {
-        [SerializeField] private Coin coinPrefab;
         [SerializeField] private Transform coinPositionsLayer;
         [SerializeField] private List<Vector3> coinPositions;
         [SerializeField] private List<Coin> generatedCoins = new();
@@ -19,7 +18,7 @@ namespace RunnerGame.LevelItems.Segments
             position.z = newPosition;
             transform.position = position;
         }
-        public void ClearOldCointAndGenerateNew(IAbstractFactory<Coin> coinFactory)
+        public void ClearOldCoinAndGenerateNew(IAbstractFactory<Coin> coinFactory)
         {
             if (_coinFactory == null) _coinFactory = coinFactory;
             ClearOldCoins();
